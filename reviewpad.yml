@@ -2,44 +2,16 @@ api-version: reviewpad.com/v3.x
 
 edition: professional
 
-labels:
-  small:
-    description: Small changes
-    color: "294b69"
-  medium:
-    description: Medium changes
-    color: "a8c3f7"
-  large:
-    description: Large changes
-    color: "8a2138"
-
 rules:
-  - name: is-small
+  - name: hasCustomKeywordInTitle
     kind: patch
-    description: small pull request
-    spec: $size() <= 30
-
-  - name: is-medium
-    kind: patch
-    description: medium-sized pull request
-    spec: $size() > 30 && $size() <= 100
-
-  - name: is-large
-    kind: patch
-    description: large-sized pull request
-    spec: $size() > 100
+    description: Verifies if the pull request title the keyword "AWS"
+    spec: $contains($title(), "AWS")
 
 workflows:
-  - name: add-label-with-size
-    description: Add label with size of the pull request
-    always-run: true
+  - name: assign-to-approver
+    description: Assigns to app approver
     if:
-      - rule: is-small
-        extra-actions:
-          - '$addLabel("small")'
-      - rule: is-medium
-        extra-actions:
-          - '$addLabel("medium")'
-      - rule: is-large
-        extra-actions:
-          - '$addLabel("large")'
+      - rule: hasCustomKeywordInTitle
+    then:
+      - $assignAssignees(["ferreiratiago"])
