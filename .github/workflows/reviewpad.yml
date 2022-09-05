@@ -8,7 +8,7 @@ on:
 jobs:
   reviewpad_job:
     name: Reviewpad
-    if: ${{ startsWith(github.event.comment.body, '/reviewpad merge') }}
+    # if: ${{ startsWith(github.event.issue.comment.body, '/reviewpad merge') }}
     runs-on: ubuntu-latest
     steps:
       - name: Reviewpad
@@ -20,5 +20,3 @@ jobs:
 
           # Uncomment next line to use your own configuration file 💪
           file: reviewpad.yml
-          with:
-            token: ${{ secrets.REVIEWPAD_TOKEN}}
