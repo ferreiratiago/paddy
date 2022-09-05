@@ -1,0 +1,13 @@
+name: MergeBot
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "*/10 * * * *"
+
+jobs:
+  mergebot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: MergeBot
+        uses: ferreiratiago/mba@v0.0.1

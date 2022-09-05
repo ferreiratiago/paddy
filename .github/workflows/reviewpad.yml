@@ -2,33 +2,23 @@
 name: Reviewpad
 
 on:
-  issues:
-    types:
-      - opened
-      - edited
   issue_comment:
-  pull_request_target:
-    types:
-      - opened
-      - synchronize
-      - edited
-
-# These permissions are necessary to automate pull requests from forks.
-permissions:
-  pull-requests: write
-  issues: write
+    types: [created]
 
 jobs:
   reviewpad_job:
-    runs-on: ubuntu-latest
     name: Reviewpad
+    if: ${{ startsWith(github.event.comment.body, '/reviewpad merge') }}
+    runs-on: ubuntu-latest
     steps:
       - name: Reviewpad
         uses: reviewpad/action@v3.x
         with:
           # Use a default configuration file.
           # Remove next line if you want to add your own configuration.
-          file_url: https://github.com/reviewpad/action/blob/main/templates/start.yml
-          
+          # file_url: https://github.com/reviewpad/action/blob/main/templates/start.yml
+
           # Uncomment next line to use your own configuration file 💪
-          # file: reviewpad.yml
+          file: reviewpad.yml
+          with:
+            token: ${{ secrets.REVIEWPAD_TOKEN}}

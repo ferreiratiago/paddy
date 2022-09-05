@@ -1,0 +1,15 @@
+api-version: reviewpad.com/v3.x
+
+labels:
+  in-merge-queue:
+    name: "in merge queue"
+
+workflows:
+  - name: add-to-merge-queue
+    on:
+      - "pull_request"
+    always-run: true
+    if:
+      - "true"
+    then:
+      - $addLabel("in-merge-queue")
