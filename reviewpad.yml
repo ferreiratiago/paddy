@@ -1,0 +1,17 @@
+api-version: reviewpad.com/v3.x
+
+workflows:
+  - name: label-pull-request-with-size
+    if:
+      # $size() retrieves the total number of changed lines in the pull request
+      # For more details see https://docs.reviewpad.com/guides/built-ins/#size
+      - rule: $size() < 30
+        # List of actions to execute if the rule is true
+        extra-actions:
+          - $addLabel("small")
+      - rule: $size() >= 30 && $size() < 100
+        extra-actions:
+          - $addLabel("medium")
+      - rule: $size() >= 100
+        extra-actions:
+          - $addLabel("large")
