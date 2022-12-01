@@ -15,3 +15,11 @@ workflows:
       - rule: $size() >= 100
         extra-actions:
           - $addLabel("large")
+  - name: manage-issues-in-projects
+    if:
+      - rule: $state() == "open" && !$isLinkedToProject("public")
+        extra-actions:
+          - $addToProject("public", "Todo")
+      - rule: $state() == "closed"
+        extra-actions:
+          - $addToProject("public", "Done")
