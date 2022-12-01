@@ -25,7 +25,7 @@ workflows:
     if:
       - rule: $state() == "open" && !$isLinkedToProject("public")
         extra-actions:
-          - $addToProject("public", "Todo")
+          - $addToProject("PrivatE", "Todo")
       - rule: $state() == "closed"
         extra-actions:
           - $addToProject("public", "Done")
