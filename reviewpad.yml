@@ -18,6 +18,8 @@ workflows:
           - $addLabel("large")
   - name: manage-issues-in-projects
     always-run: true
+    on:
+      - issue
     if:
       - rule: $state() == "open" && !$isLinkedToProject("public")
         extra-actions:
