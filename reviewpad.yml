@@ -3,6 +3,8 @@ api-version: reviewpad.com/v3.x
 workflows:
   - name: label-pull-request-with-size
     always-run: true
+    on:
+      - pull_request
     if:
       # $size() retrieves the total number of changed lines in the pull request
       # For more details see https://docs.reviewpad.com/guides/built-ins/#size
@@ -18,6 +20,8 @@ workflows:
           - $addLabel("large")
   - name: manage-issues-in-projects
     always-run: true
+    on:
+      - issue
     if:
       - rule: $state() == "open" && !$isLinkedToProject("public")
         extra-actions:
