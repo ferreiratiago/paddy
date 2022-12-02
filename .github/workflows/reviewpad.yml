@@ -1,6 +1,8 @@
 name: Reviewpad Action
 
-on: pull_request:
+on:
+    - pull_request
+    - issues
 
 jobs:
     reviewpad-action:
