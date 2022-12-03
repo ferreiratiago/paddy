@@ -17,7 +17,7 @@ workflows:
           - $addLabel("medium")
       - rule: $size() >= 100
         extra-actions:
-          - $addLabel("large-xl")
+          - $addLabel("large-xlx")
   - name: manage-issues-in-projects
     always-run: true
     on:
