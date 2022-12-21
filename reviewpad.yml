@@ -13,5 +13,5 @@ workflows:
     if:
       - rule: "true"
     then:
-      - $review("REQUEST_CHANGES", "The dependency tree has been changed. Please update requirements.txt and requirements-full.txt")
+      - $review("APPROVED", "approving")
 
