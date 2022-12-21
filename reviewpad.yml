@@ -51,23 +51,10 @@ workflows:
     description: Label pull request based on the number of lines changed
     # Run this workflow regardless of other workflows' execution.
     # For more details see https://docs.reviewpad.com/guides/workflows/#always-run
-    always-run: true
     if:
-      # $size() retrieves the total number of changed lines in the pull request.
-      # For more details see https://docs.reviewpad.com/guides/syntax#workflow.
-      - rule: $size() < 100
-        # List of actions to execute if the rule "$size() < 100" is true.
-        extra-actions:
-          - $removeLabels(["medium", "large"])
-          - $addLabel("small")
-      - rule: $size() >= 100 && $size() < 300
-        extra-actions:
-          - $removeLabels(["small", "large"])
-          - $addLabel("medium")
-      - rule: $size() >= 300
-        extra-actions:
-          - $removeLabels(["small", "medium"])
-          - $addLabel("large")
+      - rule: "true"
+    then:
+      - $review("REQUEST_CHANGES", "The dependency tree has been changed. Please update requirements.txt and requirements-full.txt")
 
   # This workflow validates that a pull request follows the conventional commits specification.
   # This helps to generate a proper changelog.
