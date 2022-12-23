@@ -13,7 +13,7 @@ workflows:
     if:
       - rule: "true"
     then:
-      - $review("APPROVED", "approving")
+      - $review("APPROVE", "approving")
       - $review("COMMENT", "comment")
       - $review("REQUEST_CHANGES", "request changes")
 
