@@ -15,5 +15,5 @@ workflows:
     then:
       - $review("APPROVE", "approving")
       - $review("COMMENT", "comment")
-      - $review("REQUEST_CHANGES", "request changes")
+      - $review("BAD", "request changes")
 
