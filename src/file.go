@@ -24,3 +24,11 @@ func main() {
 		}
 	}
 }
+
+func another(foo string, bar bool, baz bool, zed bool) {
+	fmt.Printf("hello from another")
+}
+
+func yetAnother(foo string, bar, baz, zed bool) {
+	fmt.Printf("hello from yet another")
+}
