@@ -1,15 +1,20 @@
 package utils
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
 
 func main() {
 	fmt.Println("Hello, world! x5")
 	for i := 0; i < 10; i++ {
 		if i%2 == 0 {
-			if i%3 == 0 {
+			err := errors.New("error")
+			if strings.Contains(err.Error(), "error") {
 				fmt.Println(i, "is even and divisible by 3")
 			} else {
-				if i%4 == 0 {
+				if err.Error() == "error" {
 					fmt.Println(i, "is even and divisible by 4")
 				}
 			}
